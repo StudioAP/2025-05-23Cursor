@@ -12,7 +12,7 @@ export interface Database {
         }
         Insert: {
           id: string
-          user_type: 'general' | 'classroom_owner' | 'admin'
+          user_type?: 'general' | 'classroom_owner' | 'admin'
           email?: string | null
           full_name?: string | null
           created_at?: string
@@ -30,7 +30,7 @@ export interface Database {
       classrooms: {
         Row: {
           id: string
-          owner_id: string
+          owner_id: string | null
           name: string
           description: string | null
           address: string | null
@@ -45,13 +45,14 @@ export interface Database {
           instructor_info: string | null
           pr_points: string | null
           status: 'draft' | 'pending' | 'published' | 'suspended'
-          is_paid: boolean
+          is_paid: boolean | null
+          is_visible: boolean | null
           created_at: string
           updated_at: string
         }
         Insert: {
           id?: string
-          owner_id: string
+          owner_id?: string | null
           name: string
           description?: string | null
           address?: string | null
@@ -66,13 +67,14 @@ export interface Database {
           instructor_info?: string | null
           pr_points?: string | null
           status?: 'draft' | 'pending' | 'published' | 'suspended'
-          is_paid?: boolean
+          is_paid?: boolean | null
+          is_visible?: boolean | null
           created_at?: string
           updated_at?: string
         }
         Update: {
           id?: string
-          owner_id?: string
+          owner_id?: string | null
           name?: string
           description?: string | null
           address?: string | null
@@ -87,7 +89,8 @@ export interface Database {
           instructor_info?: string | null
           pr_points?: string | null
           status?: 'draft' | 'pending' | 'published' | 'suspended'
-          is_paid?: boolean
+          is_paid?: boolean | null
+          is_visible?: boolean | null
           created_at?: string
           updated_at?: string
         }
@@ -97,21 +100,21 @@ export interface Database {
           id: string
           classroom_id: string
           photo_url: string
-          display_order: number
+          display_order: number | null
           created_at: string
         }
         Insert: {
           id?: string
           classroom_id: string
           photo_url: string
-          display_order?: number
+          display_order?: number | null
           created_at?: string
         }
         Update: {
           id?: string
           classroom_id?: string
           photo_url?: string
-          display_order?: number
+          display_order?: number | null
           created_at?: string
         }
       }
@@ -123,7 +126,7 @@ export interface Database {
           target_audience: string | null
           price_range: string | null
           description: string | null
-          display_order: number
+          display_order: number | null
           created_at: string
         }
         Insert: {
@@ -133,7 +136,7 @@ export interface Database {
           target_audience?: string | null
           price_range?: string | null
           description?: string | null
-          display_order?: number
+          display_order?: number | null
           created_at?: string
         }
         Update: {
@@ -143,7 +146,7 @@ export interface Database {
           target_audience?: string | null
           price_range?: string | null
           description?: string | null
-          display_order?: number
+          display_order?: number | null
           created_at?: string
         }
       }
@@ -153,7 +156,7 @@ export interface Database {
           classroom_id: string
           stripe_subscription_id: string | null
           stripe_customer_id: string | null
-          status: 'active' | 'inactive' | 'cancelled' | 'past_due'
+          status: 'active' | 'inactive' | 'cancelled' | 'past_due' | null
           current_period_start: string | null
           current_period_end: string | null
           created_at: string
@@ -164,7 +167,7 @@ export interface Database {
           classroom_id: string
           stripe_subscription_id?: string | null
           stripe_customer_id?: string | null
-          status: 'active' | 'inactive' | 'cancelled' | 'past_due'
+          status?: 'active' | 'inactive' | 'cancelled' | 'past_due' | null
           current_period_start?: string | null
           current_period_end?: string | null
           created_at?: string
@@ -175,7 +178,7 @@ export interface Database {
           classroom_id?: string
           stripe_subscription_id?: string | null
           stripe_customer_id?: string | null
-          status?: 'active' | 'inactive' | 'cancelled' | 'past_due'
+          status?: 'active' | 'inactive' | 'cancelled' | 'past_due' | null
           current_period_start?: string | null
           current_period_end?: string | null
           created_at?: string
@@ -214,6 +217,15 @@ export interface Database {
           created_at?: string
         }
       }
+    }
+    Views: {
+      [_ in never]: never
+    }
+    Functions: {
+      [_ in never]: never
+    }
+    Enums: {
+      [_ in never]: never
     }
   }
 } 

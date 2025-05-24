@@ -15,10 +15,9 @@ import {
 export default function SubscriptionPage() {
   const [loading, setLoading] = useState(true)
   const [processing, setProcessing] = useState(false)
-  const [profile, setProfile] = useState<any>(null)
-  const [classroom, setClassroom] = useState<any>(null)
-  const [subscription, setSubscription] = useState<any>(null)
-  const [paymentPlan, setPaymentPlan] = useState<any>(null)
+  const [classroom, setClassroom] = useState<unknown>(null)
+  const [subscription, setSubscription] = useState<unknown>(null)
+  const [paymentPlan, setPaymentPlan] = useState<unknown>(null)
   const router = useRouter()
 
   useEffect(() => {
@@ -46,7 +45,7 @@ export default function SubscriptionPage() {
         return
       }
 
-      setProfile(profileData)
+      // プロファイル情報はチェック済み
 
       // Get classroom
       const { data: classroomData } = await supabase
@@ -104,7 +103,7 @@ export default function SubscriptionPage() {
       const { data: newSubscription, error } = await supabase
         .from('subscriptions')
         .insert([{
-          classroom_id: classroom.id,
+          classroom_id: (classroom as any).id,
           stripe_subscription_id: `test_sub_${Date.now()}`,
           stripe_customer_id: `test_cust_${Date.now()}`,
           status: 'active',

@@ -8,9 +8,11 @@ const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey)
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const resolvedParams = await params
+    
     // Authorization header から Bearer token を取得
     const authHeader = request.headers.get('authorization')
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
@@ -34,7 +36,7 @@ export async function POST(
     const { data: classroom, error: classroomError } = await supabaseAdmin
       .from('classrooms')
       .select('owner_id')
-      .eq('id', params.id)
+      .eq('id', resolvedParams.id)
       .single()
 
     if (classroomError || !classroom) {
@@ -46,7 +48,7 @@ export async function POST(
     }
 
     // 決済状況チェックと状態更新
-    const result = await updateClassroomVisibility(params.id, status)
+    const result = await updateClassroomVisibility(resolvedParams.id, status)
 
     if (!result.success) {
       return NextResponse.json({ 

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useParams } from 'next/navigation'
 import { supabase } from '@/lib/supabase-browser'
 import { 
@@ -43,11 +43,7 @@ export default function ClassroomDetailPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
-  useEffect(() => {
-    loadClassroom()
-  }, [classroomId])
-
-  const loadClassroom = async () => {
+  const loadClassroom = useCallback(async () => {
     try {
       const { data, error } = await supabase
         .from('classrooms')
@@ -68,7 +64,11 @@ export default function ClassroomDetailPage() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [classroomId])
+
+  useEffect(() => {
+    loadClassroom()
+  }, [loadClassroom])
 
   if (loading) {
     return (

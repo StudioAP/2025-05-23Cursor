@@ -115,7 +115,7 @@ export default function DashboardPage() {
       }
 
       // ローカル状態を更新
-      setClassroom(prev => ({ ...prev, status: newStatus }))
+      setClassroom((prev: any) => ({ ...prev, status: newStatus }))
       alert(result.message)
 
     } catch (error) {

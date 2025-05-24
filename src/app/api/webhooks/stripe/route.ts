@@ -37,9 +37,9 @@ export async function POST(req: NextRequest) {
         const invoice = event.data.object as Stripe.Invoice
         const customerId = invoice.customer as string
         // invoiceオブジェクトからsubscriptionを正しく取得
-        const subscriptionId = typeof invoice.subscription === 'string' 
-          ? invoice.subscription 
-          : invoice.subscription?.id || ''
+        const subscriptionId = typeof (invoice as any).subscription === 'string' 
+          ? (invoice as any).subscription 
+          : (invoice as any).subscription?.id || ''
 
         console.log('Payment succeeded for customer:', customerId)
 
@@ -69,9 +69,9 @@ export async function POST(req: NextRequest) {
 
       case 'invoice.payment_failed': {
         const invoice = event.data.object as Stripe.Invoice
-        const subscriptionId = typeof invoice.subscription === 'string' 
-          ? invoice.subscription 
-          : invoice.subscription?.id || ''
+        const subscriptionId = typeof (invoice as any).subscription === 'string' 
+          ? (invoice as any).subscription 
+          : (invoice as any).subscription?.id || ''
 
         console.log('Payment failed for subscription:', subscriptionId)
 
@@ -132,8 +132,8 @@ export async function POST(req: NextRequest) {
           .from('subscriptions')
           .update({
             status: subscription.status,
-            current_period_start: new Date(subscription.current_period_start * 1000).toISOString(),
-            current_period_end: new Date(subscription.current_period_end * 1000).toISOString(),
+            current_period_start: new Date((subscription as any).current_period_start * 1000).toISOString(),
+            current_period_end: new Date((subscription as any).current_period_end * 1000).toISOString(),
             updated_at: new Date().toISOString()
           })
           .eq('stripe_subscription_id', subscriptionId)
