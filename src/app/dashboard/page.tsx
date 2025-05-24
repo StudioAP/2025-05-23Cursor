@@ -132,9 +132,14 @@ export default function DashboardPage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500"></div>
-          <p className="mt-2 text-gray-600">読み込み中...</p>
+        <div className="text-center max-w-md mx-auto px-4">
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-t-2 border-orange-500 mb-4"></div>
+          <h2 className="text-xl font-semibold text-gray-800 mb-2">データを読み込んでいます</h2>
+          <p className="text-gray-600 mb-4">教室情報とアカウント状態を確認しています...</p>
+          <div className="w-full bg-gray-200 rounded-full h-2 mb-2">
+            <div className="bg-orange-500 h-2 rounded-full animate-pulse"></div>
+          </div>
+          <p className="text-sm text-gray-500">しばらくお待ちください</p>
         </div>
       </div>
     )
@@ -364,4 +369,4 @@ export default function DashboardPage() {
       </div>
     </>
   )
-} 
+}  
