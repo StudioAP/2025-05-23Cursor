@@ -30,13 +30,19 @@ export default function EmailConfirmationPage() {
       console.log('🔍 ユーザーのメール:', data?.session?.user?.email)
       console.log('🔍 URLパラメータのメール:', email)
       
-      // セッションがあり、かつメール確認が完了している場合のみダッシュボードにリダイレクト
-      if (data.session?.user?.email_confirmed_at && data.session?.user?.email === email) {
-        console.log('✅ メール確認が完了しました。ダッシュボードにリダイレクトします。')
-        window.location.href = '/dashboard'
-      } else {
-        console.log('❌ メール確認待ちまたは条件不一致')
+      // セッションがある場合の処理
+      if (data.session?.user) {
+        // 確認済みかつ正しいメールアドレスの場合はダッシュボードへ
+        if (data.session.user.email_confirmed_at && data.session.user.email === email) {
+          console.log('✅ メール確認が完了しました。ダッシュボードにリダイレクトします。')
+          window.location.href = '/dashboard'
+        } else if (data.session.user.email !== email) {
+          // 異なるメールアドレスでログインしている場合はログアウト
+          console.log('🔄 異なるメールアドレスでセッションが残っています。ログアウトします。')
+          await supabase.auth.signOut()
+        }
       }
+      
       setCheckingAuth(false)
     }
 

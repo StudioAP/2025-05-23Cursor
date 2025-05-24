@@ -38,6 +38,9 @@ export default function RegisterPage() {
     }
 
     try {
+      // 既存セッションを完全にクリア
+      await supabase.auth.signOut()
+      
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
