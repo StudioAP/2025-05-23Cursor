@@ -226,9 +226,38 @@ export default function SearchPage() {
             </div>
 
             {classrooms.length === 0 ? (
-              <div className="text-center py-12">
-                <p className="text-gray-500 text-lg">条件に合う教室が見つかりませんでした。</p>
-                <p className="text-gray-400 mt-2">検索条件を変更してお試しください。</p>
+              <div className="text-center py-16">
+                <div className="max-w-md mx-auto">
+                  <div className="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <Search className="h-8 w-8 text-orange-500" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                    ご希望の条件では教室が見つかりませんでした
+                  </h3>
+                  <p className="text-gray-600 mb-6">
+                    条件を少し緩めると教室が表示されることがあります。<br />
+                    または、お住まいの地域に新しい教室が掲載されるまでお待ちください。
+                  </p>
+                  <div className="space-y-3">
+                    <button
+                      onClick={() => {
+                        setSearchParams({
+                          prefecture: '',
+                          city: '',
+                          keyword: '',
+                          targetAge: '',
+                          availableDay: ''
+                        })
+                      }}
+                      className="w-full bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-orange-600 transition-colors font-medium"
+                    >
+                      検索条件をリセットして再検索
+                    </button>
+                    <p className="text-sm text-gray-500">
+                      または、メールアドレスを登録して新着教室の通知を受け取ることができます
+                    </p>
+                  </div>
+                </div>
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

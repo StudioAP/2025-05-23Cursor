@@ -11,6 +11,7 @@ import {
   CreditCard,
   Edit
 } from 'lucide-react'
+import ProgressSteps from '@/components/dashboard/ProgressSteps'
 export default function DashboardPage() {
   const [profile, setProfile] = useState<any>(null)
   const [classroom, setClassroom] = useState<any>(null)
@@ -150,6 +151,13 @@ export default function DashboardPage() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Progress Steps */}
+        <ProgressSteps 
+          hasClassroom={!!classroom}
+          hasActiveSubscription={!!paymentStatus?.isActive}
+          hasPublishedClassroom={classroom?.status === 'published'}
+        />
+
         {/* Stats Overview */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           <div className="bg-white rounded-lg shadow p-6">

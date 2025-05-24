@@ -16,7 +16,7 @@ export default function RegisterPage() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
-  const [success, setSuccess] = useState(false)
+  const [_success, _setSuccess] = useState(false)
   const router = useRouter()
 
   const handleRegister = async (e: React.FormEvent) => {
@@ -68,10 +68,8 @@ export default function RegisterPage() {
           console.error('Profile update error:', profileError)
         }
 
-        setSuccess(true)
-        setTimeout(() => {
-          router.push('/dashboard')  // 教室運営者はダッシュボードへリダイレクト
-        }, 2000)
+        // メール認証ページにリダイレクト
+        router.push(`/auth/email-confirmation?email=${encodeURIComponent(email)}`)
       }
     } catch {
       setError('アカウント作成に失敗しました。')
@@ -80,7 +78,7 @@ export default function RegisterPage() {
     }
   }
 
-  if (success) {
+  if (_success) {
     return (
       <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
