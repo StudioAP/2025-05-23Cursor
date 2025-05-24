@@ -46,7 +46,9 @@ export default function RegisterPage() {
             full_name: fullName,
             user_type: userType,
           },
-          emailRedirectTo: `${window.location.origin}/auth/callback`
+          emailRedirectTo: process.env.NODE_ENV === 'production' 
+            ? 'https://kyoshitsunavi.netlify.app/auth/callback'
+            : `${window.location.origin}/auth/callback`
         }
       })
 
