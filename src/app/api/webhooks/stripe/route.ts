@@ -3,11 +3,11 @@ import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
 import { supabaseAdmin } from '@/lib/supabase-server'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || 'sk_test_dummy', {
   apiVersion: '2025-04-30.basil'
 })
 
-const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET!
+const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET || 'whsec_dummy'
 
 export async function POST(req: NextRequest) {
   const body = await req.text()
@@ -28,8 +28,8 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Invalid signature' }, { status: 400 })
   }
 
-  // Supabaseサービスクライアントを作成（webhookに適している）
-  const supabase = createServiceClient()
+  // Supabaseサービスクライアントを使用（webhookに適している）
+  const supabase = supabaseAdmin()
 
   try {
     switch (event.type) {
