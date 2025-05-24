@@ -228,8 +228,8 @@ export default function SearchPage() {
             {classrooms.length === 0 ? (
               <div className="text-center py-16">
                 <div className="max-w-md mx-auto">
-                  <div className="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <Search className="h-8 w-8 text-orange-500" />
+                  <div className="bg-orange-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <Search className="h-10 w-10 text-orange-500" />
                   </div>
                   <h3 className="text-xl font-semibold text-gray-900 mb-3">
                     ご希望の条件では教室が見つかりませんでした
@@ -238,7 +238,15 @@ export default function SearchPage() {
                     条件を少し緩めると教室が表示されることがあります。<br />
                     または、お住まいの地域に新しい教室が掲載されるまでお待ちください。
                   </p>
-                  <div className="space-y-3">
+                  <div className="space-y-4">
+                    <div className="bg-blue-50 rounded-lg p-4 text-left mb-4">
+                      <h4 className="font-medium text-blue-800 mb-2">検索のヒント</h4>
+                      <ul className="text-sm text-blue-700 list-disc pl-5 space-y-1">
+                        <li>都道府県のみを選択して、市区町村は空欄にしてみる</li>
+                        <li>対象年齢や曜日の条件を外してみる</li>
+                        <li>キーワードをより一般的な言葉に変更してみる</li>
+                      </ul>
+                    </div>
                     <button
                       onClick={() => {
                         setSearchParams({
@@ -249,9 +257,12 @@ export default function SearchPage() {
                           availableDay: ''
                         })
                       }}
-                      className="w-full bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-orange-600 transition-colors font-medium"
+                      className="w-full bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-orange-600 transition-colors font-medium flex items-center justify-center space-x-2"
                     >
-                      検索条件をリセットして再検索
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                      </svg>
+                      <span>検索条件をリセットして再検索</span>
                     </button>
                     <p className="text-sm text-gray-500">
                       または、メールアドレスを登録して新着教室の通知を受け取ることができます
@@ -342,4 +353,4 @@ export default function SearchPage() {
       </div>
     </div>
   )
-} 
+}  

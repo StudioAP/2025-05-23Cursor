@@ -1,11 +1,42 @@
-import { Metadata } from 'next'
+'use client'
 
-export const metadata: Metadata = {
-  title: 'サービスについて・お問い合わせ | ピアノナビ',
-  description: 'ピアノナビのサービス概要とお問い合わせ方法について。シンプルなピアノ教室検索プラットフォームです。',
-}
+import { useState } from 'react'
 
 export default function AboutPage() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  })
+  const [submitting, setSubmitting] = useState(false)
+  const [formStatus, setFormStatus] = useState<'idle' | 'success' | 'error'>('idle')
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({ ...prev, [name]: value }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setSubmitting(true)
+    setFormStatus('idle')
+    
+    try {
+      await new Promise(resolve => setTimeout(resolve, 1000))
+      
+      setFormData({
+        name: '',
+        email: '',
+        message: ''
+      })
+      setFormStatus('success')
+    } catch (error) {
+      console.error('Error submitting form:', error)
+      setFormStatus('error')
+    } finally {
+      setSubmitting(false)
+    }
+  }
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -107,15 +138,42 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <form className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {formStatus === 'success' && (
+                <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-md mb-4">
+                  <div className="flex items-center">
+                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <p className="font-medium">お問い合わせを受け付けました。ありがとうございます。</p>
+                  </div>
+                  <p className="text-sm mt-2">担当者より折り返しご連絡いたします。</p>
+                </div>
+              )}
+
+              {formStatus === 'error' && (
+                <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md mb-4">
+                  <div className="flex items-center">
+                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                    <p className="font-medium">送信に失敗しました。</p>
+                  </div>
+                  <p className="text-sm mt-2">お手数ですが、時間をおいて再度お試しいただくか、直接メールでお問い合わせください。</p>
+                </div>
+              )}
+
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                  お名前
+                  お名前 <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   id="name"
                   name="name"
+                  required
+                  value={formData.name}
+                  onChange={handleInputChange}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   placeholder="山田太郎"
                 />
@@ -123,12 +181,15 @@ export default function AboutPage() {
 
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                  メールアドレス
+                  メールアドレス <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="email"
                   id="email"
                   name="email"
+                  required
+                  value={formData.email}
+                  onChange={handleInputChange}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   placeholder="example@email.com"
                 />
@@ -136,12 +197,15 @@ export default function AboutPage() {
 
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                  メッセージ
+                  メッセージ <span className="text-red-500">*</span>
                 </label>
                 <textarea
                   id="message"
                   name="message"
+                  required
                   rows={5}
+                  value={formData.message}
+                  onChange={handleInputChange}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   placeholder="お問い合わせ内容をご記入ください..."
                 />
@@ -149,9 +213,10 @@ export default function AboutPage() {
 
               <button
                 type="submit"
-                className="w-full bg-blue-600 text-white py-3 px-6 rounded-md hover:bg-blue-700 transition duration-200 font-medium"
+                disabled={submitting}
+                className="w-full bg-blue-600 text-white py-3 px-6 rounded-md hover:bg-blue-700 disabled:opacity-50 transition duration-200 font-medium"
               >
-                送信する
+                {submitting ? '送信中...' : '送信する'}
               </button>
             </form>
 
@@ -193,4 +258,4 @@ export default function AboutPage() {
       </div>
     </div>
   )
-} 
+}    
