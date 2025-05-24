@@ -1,292 +1,196 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'ピアノナビについて | サービス概要・会社情報',
-  description: 'ピアノナビは、ピアノ教室と生徒をつなぐ専門プラットフォームです。私たちの理念、サービス内容、会社情報をご紹介します。',
+  title: 'サービスについて・お問い合わせ | ピアノナビ',
+  description: 'ピアノナビのサービス概要とお問い合わせ方法について。シンプルなピアノ教室検索プラットフォームです。',
 }
 
 export default function AboutPage() {
-  const features = [
-    {
-      icon: '🎹',
-      title: '専門特化',
-      description: 'ピアノ教室に特化した検索・マッチングサービスで、より専門的で詳細な情報を提供します。'
-    },
-    {
-      icon: '🔍',
-      title: '詳細検索',
-      description: '地域、年齢、レベル、曜日など、多角的な条件で理想の教室を見つけることができます。'
-    },
-    {
-      icon: '✅',
-      title: '信頼性',
-      description: 'すべての掲載教室を事前審査し、正確で最新の情報をお届けします。'
-    },
-    {
-      icon: '💰',
-      title: '完全無料',
-      description: '生徒様のサービス利用は完全無料。安心してご利用いただけます。'
-    }
-  ]
-
-  const team = [
-    {
-      name: 'ABE（代表）',
-      role: '代表取締役・プロダクトマネージャー',
-      description: '音楽教育の民主化を目指し、テクノロジーで音楽教育の課題を解決することに情熱を注いでいます。',
-      background: 'IT業界15年、音楽教育業界5年の経験'
-    }
-  ]
-
-  const stats = [
-    { label: '登録教室数', value: '1,000+', unit: '教室' },
-    { label: 'マッチング実績', value: '5,000+', unit: '件' },
-    { label: 'ユーザー数', value: '10,000+', unit: '人' },
-    { label: 'サービス提供地域', value: '47', unit: '都道府県' }
-  ]
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50">
-      {/* ヒーローセクション */}
-      <section className="py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl font-bold text-gray-900 mb-6">
-            ピアノナビについて
-          </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-            私たちは、ピアノを学びたい人と質の高いピアノ教室をつなぐ専門プラットフォームです。
-            音楽教育をより身近で accessible なものにすることが私たちの使命です。
-          </p>
-          <div className="bg-white rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">Our Mission</h2>
-            <p className="text-lg text-gray-700">
-              「すべての人に最適なピアノ教育の機会を」<br />
-              技術の力で音楽教育の課題を解決し、より多くの人がピアノを楽しめる世界を作ります。
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* 統計セクション */}
-      <section className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
-            ピアノナビの実績
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-4xl font-bold text-blue-600 mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-sm text-gray-500 mb-1">{stat.unit}</div>
-                <div className="text-gray-700 font-medium">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* サービス特徴 */}
-      <section className="py-16">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              ピアノナビの特徴
-            </h2>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 py-12">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* サービス概要セクション */}
+        <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
+          <div className="text-center mb-8">
+            <h1 className="text-4xl font-bold text-gray-900 mb-4">
+              ピアノナビについて
+            </h1>
             <p className="text-lg text-gray-600">
-              他の教室検索サービスとは異なる、ピアノナビならではの価値
+              ピアノ教室と生徒をつなぐシンプルな検索プラットフォームです
             </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-lg p-6 text-center">
-                <div className="text-4xl mb-4">{feature.icon}</div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-600">
-                  {feature.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* サービス詳細 */}
-      <section className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                なぜピアノナビを作ったのか
+          <div className="space-y-8">
+            <section>
+              <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+                サービスの特徴
               </h2>
-              <div className="space-y-4 text-gray-700">
-                <p>
-                  音楽教育、特にピアノ教育は多くの人にとって憧れでありながら、
-                  「どの教室を選べばいいかわからない」「自分に合った先生が見つからない」
-                  といった課題がありました。
-                </p>
-                <p>
-                  一方で、優秀な講師の方々が運営する素晴らしい教室も、
-                  生徒募集に苦労されているケースが多く見られました。
-                </p>
-                <p>
-                  この「学びたい人」と「教えたい人」のミスマッチを解決し、
-                  より多くの人が音楽の喜びを感じられる社会を作りたい。
-                  それがピアノナビ誕生のきっかけです。
-                </p>
-              </div>
-            </div>
-            <div className="bg-gradient-to-br from-blue-100 to-purple-100 rounded-lg p-8">
-              <h3 className="text-2xl font-semibold text-gray-900 mb-4">
-                私たちの価値観
-              </h3>
-              <ul className="space-y-3">
-                <li className="flex items-start">
-                  <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-medium mr-3 mt-0.5">
-                    1
-                  </span>
-                  <span className="text-gray-700">
-                    <strong>品質重視:</strong> 量より質を重視し、厳選された教室のみを掲載
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-medium mr-3 mt-0.5">
-                    2
-                  </span>
-                  <span className="text-gray-700">
-                    <strong>透明性:</strong> 料金や指導方針を明確に表示し、安心して選択できる環境
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <span className="bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-medium mr-3 mt-0.5">
-                    3
-                  </span>
-                  <span className="text-gray-700">
-                    <strong>サポート:</strong> マッチング後も継続的にサポートし、長期的な関係を支援
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* チーム紹介 */}
-      <section className="py-16">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              チーム紹介
-            </h2>
-            <p className="text-lg text-gray-600">
-              音楽教育への情熱を持つメンバーが、より良いサービスを提供します
-            </p>
-          </div>
-          <div className="grid md:grid-cols-1 lg:grid-cols-1 gap-8 max-w-2xl mx-auto">
-            {team.map((member, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-lg p-8 text-center">
-                <div className="w-24 h-24 bg-blue-100 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-2xl font-bold text-blue-600">
-                    {member.name.charAt(0)}
-                  </span>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="flex items-start space-x-3">
+                  <div className="bg-blue-100 p-2 rounded-lg">
+                    <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900">簡単検索</h3>
+                    <p className="text-gray-600 text-sm">地域や条件でピアノ教室を簡単に検索できます</p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  {member.name}
-                </h3>
-                <p className="text-blue-600 font-medium mb-3">{member.role}</p>
-                <p className="text-gray-600 mb-3">{member.description}</p>
-                <p className="text-sm text-gray-500">{member.background}</p>
+                
+                <div className="flex items-start space-x-3">
+                  <div className="bg-green-100 p-2 rounded-lg">
+                    <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900">信頼できる情報</h3>
+                    <p className="text-gray-600 text-sm">教室の詳細情報を正確に掲載しています</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-3">
+                  <div className="bg-purple-100 p-2 rounded-lg">
+                    <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900">生徒は無料</h3>
+                    <p className="text-gray-600 text-sm">教室検索・利用は完全無料です</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-3">
+                  <div className="bg-yellow-100 p-2 rounded-lg">
+                    <svg className="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900">教室掲載も簡単</h3>
+                    <p className="text-gray-600 text-sm">教室運営者の方も簡単に掲載できます</p>
+                  </div>
+                </div>
               </div>
-            ))}
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+                なぜ始めたのか
+              </h2>
+              <p className="text-gray-700 leading-relaxed">
+                「ピアノを習いたいけれど、どの教室を選べばいいかわからない」「近所にどんな教室があるのか知りたい」
+                そんな声をよく聞くようになりました。一方で、素晴らしいピアノ教室を運営している先生方が、
+                生徒募集に苦労されているケースも多く見られます。
+              </p>
+              <p className="text-gray-700 leading-relaxed mt-4">
+                この「学びたい人」と「教えたい人」をシンプルにつなげるサービスがあれば、
+                もっと多くの人がピアノの楽しさに出会えるのではないか。そんな思いでピアノナビを作りました。
+              </p>
+            </section>
           </div>
         </div>
-      </section>
 
-      {/* 会社情報 */}
-      <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
-            会社情報
+        {/* お問い合わせセクション */}
+        <div className="bg-white rounded-lg shadow-lg p-8">
+          <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">
+            お問い合わせ
           </h2>
-          <div className="bg-gray-50 rounded-lg p-8">
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">基本情報</h3>
-                <dl className="space-y-3">
-                  <div>
-                    <dt className="text-sm font-medium text-gray-500">会社名</dt>
-                    <dd className="text-gray-900">株式会社ピアノナビ</dd>
-                  </div>
-                  <div>
-                    <dt className="text-sm font-medium text-gray-500">設立</dt>
-                    <dd className="text-gray-900">2024年</dd>
-                  </div>
-                  <div>
-                    <dt className="text-sm font-medium text-gray-500">代表者</dt>
-                    <dd className="text-gray-900">代表取締役 ABE</dd>
-                  </div>
-                  <div>
-                    <dt className="text-sm font-medium text-gray-500">事業内容</dt>
-                    <dd className="text-gray-900">ピアノ教室検索プラットフォーム運営</dd>
-                  </div>
-                </dl>
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">連絡先</h3>
-                <dl className="space-y-3">
-                  <div>
-                    <dt className="text-sm font-medium text-gray-500">所在地</dt>
-                    <dd className="text-gray-900">
-                      〒100-0001<br />
-                      東京都千代田区千代田1-1-1<br />
-                      ピアノナビビル 3F
-                    </dd>
-                  </div>
-                  <div>
-                    <dt className="text-sm font-medium text-gray-500">電話</dt>
-                    <dd className="text-gray-900">0120-123-456</dd>
-                  </div>
-                  <div>
-                    <dt className="text-sm font-medium text-gray-500">メール</dt>
-                    <dd className="text-gray-900">info@piano-navi.com</dd>
-                  </div>
-                </dl>
-              </div>
+          
+          <div className="max-w-2xl mx-auto">
+            <div className="text-center mb-8">
+              <p className="text-gray-600">
+                ご質問やご要望がございましたら、メールでお気軽にお問い合わせください
+              </p>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* CTA セクション */}
-      <section className="py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="bg-white rounded-lg shadow-lg p-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              一緒にピアノ教育の未来を作りませんか？
-            </h2>
-            <p className="text-lg text-gray-600 mb-8">
-              教室運営者の方も、ピアノを学びたい方も、お気軽にお問い合わせください。
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="/register"
-                className="inline-flex items-center justify-center px-8 py-3 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 transition duration-200"
+            <form className="space-y-6">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                  お名前
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="山田太郎"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                  メールアドレス
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="example@email.com"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                  メッセージ
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={5}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="お問い合わせ内容をご記入ください..."
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="w-full bg-blue-600 text-white py-3 px-6 rounded-md hover:bg-blue-700 transition duration-200 font-medium"
               >
-                教室を掲載する
-              </a>
-              <a
-                href="/contact"
-                className="inline-flex items-center justify-center px-8 py-3 bg-gray-100 text-gray-700 font-medium rounded-md hover:bg-gray-200 transition duration-200"
-              >
-                お問い合わせ
-              </a>
+                送信する
+              </button>
+            </form>
+
+            <div className="mt-8 text-center">
+              <div className="bg-gray-50 rounded-lg p-6">
+                <div className="flex items-center justify-center mb-4">
+                  <div className="bg-blue-100 p-3 rounded-lg">
+                    <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                </div>
+                <h3 className="font-semibold text-gray-900 mb-2">直接メールでも</h3>
+                <p className="text-gray-600 mb-2">
+                  <a href="mailto:contact@piano-navi.com" className="text-blue-600 hover:text-blue-700">
+                    contact@piano-navi.com
+                  </a>
+                </p>
+                <p className="text-sm text-gray-500">
+                  通常24時間以内にお返事いたします
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      </section>
+
+        {/* 運営情報 */}
+        <div className="mt-8 bg-white rounded-lg shadow-lg p-8">
+          <h2 className="text-2xl font-semibold text-gray-900 text-center mb-6">
+            運営情報
+          </h2>
+          <div className="text-center space-y-3 text-gray-700">
+            <p><strong>サービス名：</strong>ピアノナビ</p>
+            <p><strong>運営者：</strong>ABE</p>
+            <p><strong>開始：</strong>2024年</p>
+            <p><strong>事業内容：</strong>ピアノ教室検索プラットフォームの運営</p>
+          </div>
+        </div>
+      </div>
     </div>
   )
 } 
