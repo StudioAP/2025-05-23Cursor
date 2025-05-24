@@ -23,8 +23,10 @@ export default function EmailConfirmationPage() {
     const checkAuthStatus = async () => {
       setCheckingAuth(true)
       const { data } = await supabase.auth.getSession()
-      if (data.session?.user?.email_confirmed_at) {
-        // メール認証完了 → ダッシュボードにリダイレクト
+      
+      // セッションがあり、かつメール確認が完了している場合のみダッシュボードにリダイレクト
+      if (data.session?.user?.email_confirmed_at && data.session?.user?.email === email) {
+        console.log('メール確認が完了しました。ダッシュボードにリダイレクトします。')
         window.location.href = '/dashboard'
       }
       setCheckingAuth(false)
