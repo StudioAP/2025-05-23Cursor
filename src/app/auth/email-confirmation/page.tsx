@@ -24,17 +24,25 @@ export default function EmailConfirmationPage() {
       setCheckingAuth(true)
       const { data } = await supabase.auth.getSession()
       
+      console.log('🔍 メール確認ページ - セッション確認:', data)
+      console.log('🔍 ユーザー:', data?.session?.user)
+      console.log('🔍 email_confirmed_at:', data?.session?.user?.email_confirmed_at)
+      console.log('🔍 ユーザーのメール:', data?.session?.user?.email)
+      console.log('🔍 URLパラメータのメール:', email)
+      
       // セッションがあり、かつメール確認が完了している場合のみダッシュボードにリダイレクト
       if (data.session?.user?.email_confirmed_at && data.session?.user?.email === email) {
-        console.log('メール確認が完了しました。ダッシュボードにリダイレクトします。')
+        console.log('✅ メール確認が完了しました。ダッシュボードにリダイレクトします。')
         window.location.href = '/dashboard'
+      } else {
+        console.log('❌ メール確認待ちまたは条件不一致')
       }
       setCheckingAuth(false)
     }
 
     const interval = setInterval(checkAuthStatus, 3000) // 3秒ごとにチェック
     return () => clearInterval(interval)
-  }, [])
+  }, [email])
 
   const handleResend = async () => {
     if (!email) {

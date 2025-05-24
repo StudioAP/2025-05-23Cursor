@@ -50,6 +50,12 @@ export default function RegisterPage() {
         }
       })
 
+      console.log('🔍 SignUp結果:', data)
+      console.log('🔍 エラー:', error)
+      console.log('🔍 ユーザー情報:', data?.user)
+      console.log('🔍 セッション情報:', data?.session)
+      console.log('🔍 email_confirmed_at:', data?.user?.email_confirmed_at)
+
       if (error) {
         setError(error.message)
         return
